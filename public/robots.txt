@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://etias-application-desk.com/sitemap.xml

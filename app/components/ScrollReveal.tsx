@@ -1,13 +1,15 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 /**
  * Adds `.is-visible` to elements as they scroll into view, driving the CSS
  * reveal transitions. Covers both the top page (`.reveal`) and subpage
- * article content (selector list below) so reveals work on every browser
- * including iOS Safari. Honors reduced-motion and degrades gracefully when
- * IntersectionObserver is unavailable.
+ * article content (selector list below). Re-runs on every client-side route
+ * change (via usePathname) so reveal elements on newly-navigated pages are
+ * observed — otherwise they would stay at opacity:0 until a full reload.
+ * Honors reduced-motion and degrades gracefully without IntersectionObserver.
  */
 const SELECTOR = [
   ".reveal",
@@ -26,6 +28,8 @@ const SELECTOR = [
 ].join(",");
 
 export default function ScrollReveal() {
+  const pathname = usePathname();
+
   useEffect(() => {
     const els = Array.from(document.querySelectorAll<HTMLElement>(SELECTOR));
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -49,7 +53,7 @@ export default function ScrollReveal() {
 
     els.forEach((el) => io.observe(el));
     return () => io.disconnect();
-  }, []);
+  }, [pathname]);
 
   return null;
 }

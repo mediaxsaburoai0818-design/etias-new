@@ -102,7 +102,9 @@ export default function GuidePage() {
           <h1>
             ETIAS（エティアス）完全ガイド
             <br />
-            日本人のための申請方法・費用・対象国まとめ
+            日本人のための
+            <br />
+            申請方法・費用・対象国まとめ
           </h1>
           <div className="svc-hero-meta">
             <span>公開日: 2026年5月20日</span>

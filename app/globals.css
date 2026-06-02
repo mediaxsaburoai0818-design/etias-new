@@ -936,10 +936,11 @@ h4 { font-size: 1.125rem; }
 
 .svc-hero h1 {
   color: #fff;
-  font-size: 1.6rem;
+  font-size: 1.25rem;
   max-width: 760px;
   margin: 0 auto;
-  line-height: 1.5;
+  line-height: 1.6;
+  text-wrap: balance;
   animation: heroUp 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 

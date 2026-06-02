@@ -11,9 +11,12 @@ export default function AboutUsPage() {
   return (
     <>
       <Breadcrumb items={[{ name: "特定商取引法に基づく表記" }]} />
-      <div className="legal-content">
-        <h1>特定商取引法に基づく表記</h1>
-
+      <section className="svc-hero svc-hero-aboutus">
+        <div className="container">
+          <h1>特定商取引法に基づく表記</h1>
+        </div>
+      </section>
+      <article className="svc-article">
         <table className="legal-table">
           <tbody>
             <tr>
@@ -80,7 +83,7 @@ export default function AboutUsPage() {
             </tr>
           </tbody>
         </table>
-      </div>
+      </article>
     </>
   );
 }

@@ -11,9 +11,12 @@ export default function ContentPolicyPage() {
   return (
     <>
       <Breadcrumb items={[{ name: "コンテンツポリシー" }]} />
-      <div className="legal-content">
-        <h1>コンテンツポリシー</h1>
-
+      <section className="svc-hero svc-hero-content-policy">
+        <div className="container">
+          <h1>コンテンツポリシー</h1>
+        </div>
+      </section>
+      <article className="svc-article">
         <h2>ETIAS Application Deskとは</h2>
         <p>ETIAS Application Deskは、「電子渡航認証ETIASの基本情報や申請方法、シェンゲンビザ、EES（出入国システム）など、ヨーロッパ渡航に必要な情報を紹介するメディアサイト」です。渡航予定者だけでなく興味がある方向けに分かりやすい記事を発信しており、ヨーロッパ旅行に役立つ最新ニュースも掲載しています。</p>
 
@@ -50,7 +53,7 @@ export default function ContentPolicyPage() {
 
         <h3>4. 記事の入稿、定期的な見直し・更新作業</h3>
         <p>記事完成後、サイトにアップします。パソコンとスマートフォンの両方で確認を行い、読みやすさを最終チェック。ヨーロッパ渡航に関する情報は日々更新されるため、常に最新情報をお届けできるよう定期的に品質管理を実施しています。</p>
-      </div>
+      </article>
     </>
   );
 }

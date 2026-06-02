@@ -11,9 +11,12 @@ export default function PrivacyPage() {
   return (
     <>
       <Breadcrumb items={[{ name: "個人情報保護に関する基本方針" }]} />
-      <div className="legal-content">
-        <h1>個人情報保護に関する基本方針</h1>
-
+      <section className="svc-hero svc-hero-privacy">
+        <div className="container">
+          <h1>個人情報保護に関する基本方針</h1>
+        </div>
+      </section>
+      <article className="svc-article">
         <p>ETIAS Application Desk（以下「当サイト」といいます）ではお客様の個人情報を適切に管理するため、「個人情報保護に関する基本方針」を策定しています。個人情報の取扱いについて当サイトは基本方針に則り、個人情報保護の徹底を図ります。</p>
         <p>個人情報保護に関する基本方針の内容は下記の通りです。</p>
 
@@ -62,7 +65,7 @@ export default function PrivacyPage() {
 
         <h3>クッキーの管理、削除方法について</h3>
         <p>お客様がご利用のコンピューター、タブレット、またはスマートフォンのブラウザ設定よりクッキーを無効にすることや、保存されている閲覧履歴を削除することができます。ただし、クッキーを無効にした際は、当サイトの一部機能をご利用いただけない場合があります。ブラウザの設定変更方法については、各ブラウザ提供元のウェブサイトをご参照ください。</p>
-      </div>
+      </article>
     </>
   );
 }

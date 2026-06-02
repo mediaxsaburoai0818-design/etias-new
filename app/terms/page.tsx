@@ -12,9 +12,12 @@ export default function TermsPage() {
   return (
     <>
       <Breadcrumb items={[{ name: "利用規約" }]} />
-      <div className="legal-content">
-        <h1>利用規約</h1>
-
+      <section className="svc-hero svc-hero-terms">
+        <div className="container">
+          <h1>利用規約</h1>
+        </div>
+      </section>
+      <article className="svc-article">
         <p>ETIAS Application Desk（以下「当サイト」といいます）は、下記の通り利用規約（以下「本規約」といいます）を定めます。</p>
         <p>当サイトのサービス（以下「本サービス」といいます）の利用には本規約のすべてに同意していただく必要があり、本サービスの利用を以て本規約に同意したものとみなします。</p>
 
@@ -57,7 +60,7 @@ export default function TermsPage() {
 
         <h2>第9条 免責事項</h2>
         <p>当サイトを利用したことにより発生した損害については、当サイトは責任をもって対応いたします。ただし、その上限は頂戴したサービス料を限度とさせていただきます。利用者が本サービスから得る情報などについての一切は利用者の責任において判断することとし、当サイトはいかなる保証も行わないものとします。利用者が使用する機器およびソフトウェアについて、当サイトはその動作に関する保証は一切行わないものとします。</p>
-      </div>
+      </article>
     </>
   );
 }

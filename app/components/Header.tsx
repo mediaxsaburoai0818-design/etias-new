@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import Logo from "./Logo";
 
 const navItems = [
   { href: "/guide/", label: "ETIASとは" },
@@ -18,8 +19,8 @@ export default function Header() {
     <header className="site-header">
       <div className="container">
         <Link href="/" className="site-logo">
-          <span className="site-logo-mark">EA</span>
-          ETIAS Application Desk
+          <Logo className="site-logo-mark" size={38} />
+          <span className="site-logo-name">ETIAS Application Desk</span>
         </Link>
         <nav className="nav-desktop">
           {navItems.map((item) => (

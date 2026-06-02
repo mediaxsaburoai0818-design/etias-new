@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP, Noto_Serif_JP, Fraunces } from "next/font/google";
+import { Noto_Sans_JP, Noto_Serif_JP, Fraunces, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -30,6 +30,14 @@ const fraunces = Fraunces({
   variable: "--font-fraunces",
 });
 
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["500", "600"],
+  display: "swap",
+  preload: true,
+  variable: "--font-cormorant",
+});
+
 export const metadata: Metadata = {
   title: {
     default: "ETIAS Application Desk｜日本人のための欧州渡航認証ETIASガイド",
@@ -56,7 +64,7 @@ export default function RootLayout({
   return (
     <html
       lang="ja"
-      className={`${notoSansJP.variable} ${notoSerifJP.variable} ${fraunces.variable}`}
+      className={`${notoSansJP.variable} ${notoSerifJP.variable} ${fraunces.variable} ${cormorant.variable}`}
     >
       <body>
         <script

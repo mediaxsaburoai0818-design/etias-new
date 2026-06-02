@@ -38,8 +38,9 @@ export default function Footer() {
             <ul>
               <li><Link href="/countries/">対象国一覧</Link></li>
               <li><Link href="/terms/">利用規約</Link></li>
-              <li><Link href="/privacy/">プライバシーポリシー</Link></li>
+              <li><Link href="/privacy/">個人情報保護に関する基本方針</Link></li>
               <li><Link href="/content-policy/">コンテンツポリシー</Link></li>
+              <li><Link href="/aboutus/">特定商取引法に基づく表記</Link></li>
             </ul>
           </div>
         </div>
@@ -48,8 +49,9 @@ export default function Footer() {
           <p>当サイトはEU公式機関とは関係のない独立した情報提供サービスです。</p>
           <div className="footer-legal">
             <Link href="/terms/">利用規約</Link>
-            <Link href="/privacy/">プライバシーポリシー</Link>
+            <Link href="/privacy/">個人情報保護に関する基本方針</Link>
             <Link href="/content-policy/">コンテンツポリシー</Link>
+            <Link href="/aboutus/">特定商取引法に基づく表記</Link>
           </div>
         </div>
       </div>

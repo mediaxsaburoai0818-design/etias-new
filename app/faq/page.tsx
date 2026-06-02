@@ -198,7 +198,7 @@ export default function FaqPage() {
         }}
       />
       <Breadcrumb items={[{ name: "よくある質問" }]} />
-      <section className="svc-hero">
+      <section className="svc-hero svc-hero-faq">
         <div className="container">
           <h1>ETIASよくある質問（FAQ）50選</h1>
           <div className="svc-hero-meta">

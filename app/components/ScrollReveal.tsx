@@ -3,13 +3,31 @@
 import { useEffect } from "react";
 
 /**
- * Adds `.is-visible` to any element marked `.reveal` as it scrolls into view,
- * driving the CSS reveal transition. Honors reduced-motion and gracefully
- * degrades when IntersectionObserver is unavailable.
+ * Adds `.is-visible` to elements as they scroll into view, driving the CSS
+ * reveal transitions. Covers both the top page (`.reveal`) and subpage
+ * article content (selector list below) so reveals work on every browser
+ * including iOS Safari. Honors reduced-motion and degrades gracefully when
+ * IntersectionObserver is unavailable.
  */
+const SELECTOR = [
+  ".reveal",
+  ".svc-article > h2",
+  ".svc-article > h3",
+  ".svc-article > p",
+  ".svc-article > ul",
+  ".svc-article > ol",
+  ".svc-article > table",
+  ".svc-article > blockquote",
+  ".svc-article > .svc-toc",
+  ".svc-article > .info-box",
+  ".svc-article > .warning-box",
+  ".svc-article > .related-links",
+  ".related-links",
+].join(",");
+
 export default function ScrollReveal() {
   useEffect(() => {
-    const els = Array.from(document.querySelectorAll<HTMLElement>(".reveal"));
+    const els = Array.from(document.querySelectorAll<HTMLElement>(SELECTOR));
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     if (reduce || !("IntersectionObserver" in window)) {
@@ -26,7 +44,7 @@ export default function ScrollReveal() {
           }
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+      { threshold: 0.1, rootMargin: "0px 0px -6% 0px" }
     );
 
     els.forEach((el) => io.observe(el));

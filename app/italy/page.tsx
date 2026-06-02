@@ -30,7 +30,7 @@ export default function ItalyPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Article", headline: "イタリア渡航のETIAS申請ガイド｜ローマ・ミラノ旅行", datePublished: "2026-05-20", dateModified: "2026-05-20", author: { "@type": "Organization", name: "ETIAS Application Desk" }, publisher: { "@type": "Organization", name: "ETIAS Application Desk" }, description: "イタリア渡航に必要なETIAS申請ガイド。", mainEntityOfPage: "https://etias-application-desk.com/italy/" }) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })) }) }} />
       <Breadcrumb items={[{ name: "対象国一覧", href: "/countries/" }, { name: "イタリア" }]} />
-      <section className="svc-hero">
+      <section className="svc-hero svc-hero-italy">
         <div className="container">
           <h1>イタリア渡航のETIAS申請ガイド<br />ローマ・ミラノ旅行</h1>
           <div className="svc-hero-meta"><span>公開日: 2026年5月20日</span><span>更新日: 2026年5月20日</span></div>

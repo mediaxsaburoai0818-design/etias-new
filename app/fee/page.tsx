@@ -75,7 +75,7 @@ export default function FeePage() {
         }}
       />
       <Breadcrumb items={[{ name: "ETIAS費用・支払い方法" }]} />
-      <section className="svc-hero">
+      <section className="svc-hero svc-hero-fee">
         <div className="container">
           <h1>ETIAS費用・支払い方法<br />申請料20ユーロの詳細</h1>
           <div className="svc-hero-meta">

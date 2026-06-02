@@ -75,7 +75,7 @@ export default function CountriesPage() {
         }}
       />
       <Breadcrumb items={[{ name: "ETIAS対象国一覧" }]} />
-      <section className="svc-hero">
+      <section className="svc-hero svc-hero-countries">
         <div className="container">
           <h1>ETIAS対象国一覧<br />シェンゲン協定30か国</h1>
           <div className="svc-hero-meta">

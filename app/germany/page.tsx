@@ -30,7 +30,7 @@ export default function GermanyPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Article", headline: "ドイツ渡航のETIAS申請ガイド｜ビジネス出張にも対応", datePublished: "2026-05-20", dateModified: "2026-05-20", author: { "@type": "Organization", name: "ETIAS Application Desk" }, publisher: { "@type": "Organization", name: "ETIAS Application Desk" }, description: "ドイツ渡航のETIAS申請ガイド。", mainEntityOfPage: "https://etias-application-desk.com/germany/" }) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.question, acceptedAnswer: { "@type": "Answer", text: f.answer } })) }) }} />
       <Breadcrumb items={[{ name: "対象国一覧", href: "/countries/" }, { name: "ドイツ" }]} />
-      <section className="svc-hero">
+      <section className="svc-hero svc-hero-germany">
         <div className="container">
           <h1>ドイツ渡航のETIAS申請ガイド<br />ビジネス出張にも対応</h1>
           <div className="svc-hero-meta"><span>公開日: 2026年5月20日</span><span>更新日: 2026年5月20日</span></div>

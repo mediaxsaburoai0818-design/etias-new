@@ -75,7 +75,7 @@ export default function DeniedPage() {
         }}
       />
       <Breadcrumb items={[{ name: "申請却下・トラブル対応" }]} />
-      <section className="svc-hero">
+      <section className="svc-hero svc-hero-denied">
         <div className="container">
           <h1>ETIAS申請却下・トラブル対応ガイド</h1>
           <div className="svc-hero-meta">

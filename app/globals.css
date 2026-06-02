@@ -895,20 +895,40 @@ h4 { font-size: 1.125rem; }
 
 .svc-hero {
   position: relative;
-  background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+  background-color: var(--color-primary-dark);
+  background-image: var(--hero-img, none);
+  background-size: cover;
+  background-position: center;
   color: #fff;
-  padding: 3rem 0 2.75rem;
+  padding: 3.5rem 0 3.25rem;
   text-align: center;
   overflow: hidden;
 }
 
+/* Light blue veil over the per-page European photo (keeps white text legible) */
 .svc-hero::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 50% -30%, rgba(74,144,217,0.28), transparent 62%);
+  background: linear-gradient(180deg, rgba(13,59,102,0.52) 0%, rgba(6,36,63,0.72) 100%);
   pointer-events: none;
 }
+
+/* Per-page European background images */
+.svc-hero-france { --hero-img: url("/images/heroes/france.jpg"); }
+.svc-hero-italy { --hero-img: url("/images/heroes/italy.jpg"); }
+.svc-hero-germany { --hero-img: url("/images/heroes/germany.jpg"); }
+.svc-hero-spain { --hero-img: url("/images/heroes/spain.jpg"); }
+.svc-hero-switzerland { --hero-img: url("/images/heroes/switzerland.jpg"); }
+.svc-hero-guide { --hero-img: url("/images/heroes/guide.jpg"); }
+.svc-hero-countries { --hero-img: url("/images/heroes/countries.jpg"); }
+.svc-hero-flow { --hero-img: url("/images/heroes/flow.jpg"); }
+.svc-hero-fee { --hero-img: url("/images/heroes/fee.jpg"); }
+.svc-hero-faq { --hero-img: url("/images/heroes/faq.jpg"); }
+.svc-hero-comparison { --hero-img: url("/images/heroes/comparison.jpg"); }
+.svc-hero-esta-comparison { --hero-img: url("/images/heroes/esta-comparison.jpg"); }
+.svc-hero-ees { --hero-img: url("/images/heroes/ees.jpg"); }
+.svc-hero-denied { --hero-img: url("/images/heroes/denied.jpg"); }
 
 .svc-hero .container {
   position: relative;
@@ -1507,38 +1527,51 @@ h4 { font-size: 1.125rem; }
 }
 
 /* ============================================
-   Subpage scroll reveal — CSS scroll-driven, progressive enhancement.
-   Applies to article content site-wide with no per-page markup.
-   Browsers without support simply render everything visible.
+   Subpage scroll reveal — JS-driven (ScrollReveal.tsx), works on all
+   browsers incl. iOS Safari. Hidden state gated behind html.js so no-JS
+   users always see content. Applied to article content with no per-page markup.
    ============================================ */
 
-@media (prefers-reduced-motion: no-preference) {
-  @supports (animation-timeline: view()) {
-    .svc-article > h2,
-    .svc-article > h3,
-    .svc-article > p,
-    .svc-article > ul,
-    .svc-article > ol,
-    .svc-article > table,
-    .svc-article > .svc-toc,
-    .svc-article > .info-box,
-    .svc-article > .warning-box,
-    .svc-article > .related-links,
-    .related-links {
-      animation: subReveal linear both;
-      animation-timeline: view();
-      animation-range: entry 3% entry 24%;
-    }
-  }
+.js .svc-article > h2,
+.js .svc-article > h3,
+.js .svc-article > p,
+.js .svc-article > ul,
+.js .svc-article > ol,
+.js .svc-article > table,
+.js .svc-article > blockquote,
+.js .svc-article > .svc-toc,
+.js .svc-article > .info-box,
+.js .svc-article > .warning-box,
+.js .svc-article > .related-links,
+.js .related-links {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-@keyframes subReveal {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
+.js .svc-article > .is-visible,
+.js .related-links.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .svc-article > h2,
+  .js .svc-article > h3,
+  .js .svc-article > p,
+  .js .svc-article > ul,
+  .js .svc-article > ol,
+  .js .svc-article > table,
+  .js .svc-article > blockquote,
+  .js .svc-article > .svc-toc,
+  .js .svc-article > .info-box,
+  .js .svc-article > .warning-box,
+  .js .svc-article > .related-links,
+  .js .related-links {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }

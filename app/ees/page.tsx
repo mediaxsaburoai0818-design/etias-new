@@ -75,7 +75,7 @@ export default function EesPage() {
         }}
       />
       <Breadcrumb items={[{ name: "EESとETIASの関係" }]} />
-      <section className="svc-hero">
+      <section className="svc-hero svc-hero-ees">
         <div className="container">
           <h1>EES（出入国管理システム）と<br />ETIASの関係</h1>
           <div className="svc-hero-meta">

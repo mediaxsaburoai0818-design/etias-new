@@ -75,7 +75,7 @@ export default function FrancePage() {
         }}
       />
       <Breadcrumb items={[{ name: "対象国一覧", href: "/countries/" }, { name: "フランス" }]} />
-      <section className="svc-hero">
+      <section className="svc-hero svc-hero-france">
         <div className="container">
           <h1>フランス渡航のETIAS申請ガイド<br />パリ旅行の準備</h1>
           <div className="svc-hero-meta">

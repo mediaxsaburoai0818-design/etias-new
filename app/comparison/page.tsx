@@ -75,7 +75,7 @@ export default function ComparisonPage() {
         }}
       />
       <Breadcrumb items={[{ name: "ETIAS vs ESTA vs K-ETA比較" }]} />
-      <section className="svc-hero">
+      <section className="svc-hero svc-hero-comparison">
         <div className="container">
           <h1>ETIAS vs ESTA vs K-ETA 徹底比較<br />電子渡航認証の違い</h1>
           <div className="svc-hero-meta">

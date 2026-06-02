@@ -30,7 +30,7 @@ export default function EstaComparisonPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Article", headline: "ESTA経験者向け｜ETIASとの違いと申請のポイント", datePublished: "2026-05-20", dateModified: "2026-05-20", author: { "@type": "Organization", name: "ETIAS Application Desk" }, publisher: { "@type": "Organization", name: "ETIAS Application Desk" }, description: "ESTA経験者向けETIAS解説。", mainEntityOfPage: "https://etias-application-desk.com/esta-comparison/" }) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.question, acceptedAnswer: { "@type": "Answer", text: f.answer } })) }) }} />
       <Breadcrumb items={[{ name: "ESTA経験者向けガイド" }]} />
-      <section className="svc-hero">
+      <section className="svc-hero svc-hero-esta-comparison">
         <div className="container">
           <h1>ESTA経験者向け<br />ETIASとの違いと申請のポイント</h1>
           <div className="svc-hero-meta"><span>公開日: 2026年5月20日</span><span>更新日: 2026年5月20日</span></div>

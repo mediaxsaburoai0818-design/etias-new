@@ -97,7 +97,7 @@ export default function GuidePage() {
 
       <Breadcrumb items={[{ name: "ETIAS完全ガイド" }]} />
 
-      <section className="svc-hero">
+      <section className="svc-hero svc-hero-guide">
         <div className="container">
           <h1>
             ETIAS（エティアス）完全ガイド

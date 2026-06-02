@@ -30,7 +30,7 @@ export default function SpainPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Article", headline: "スペイン渡航のETIAS申請ガイド｜バルセロナ・マドリード", datePublished: "2026-05-20", dateModified: "2026-05-20", author: { "@type": "Organization", name: "ETIAS Application Desk" }, publisher: { "@type": "Organization", name: "ETIAS Application Desk" }, description: "スペイン渡航に必要なETIAS申請ガイド。", mainEntityOfPage: "https://etias-application-desk.com/spain/" }) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.question, acceptedAnswer: { "@type": "Answer", text: f.answer } })) }) }} />
       <Breadcrumb items={[{ name: "対象国一覧", href: "/countries/" }, { name: "スペイン" }]} />
-      <section className="svc-hero">
+      <section className="svc-hero svc-hero-spain">
         <div className="container">
           <h1>スペイン渡航のETIAS申請ガイド<br />バルセロナ・マドリード</h1>
           <div className="svc-hero-meta"><span>公開日: 2026年5月20日</span><span>更新日: 2026年5月20日</span></div>

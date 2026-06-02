@@ -75,7 +75,7 @@ export default function FlowPage() {
         }}
       />
       <Breadcrumb items={[{ name: "ETIAS申請方法" }]} />
-      <section className="svc-hero">
+      <section className="svc-hero svc-hero-flow">
         <div className="container">
           <h1>ETIAS申請方法<br />ステップバイステップで解説</h1>
           <div className="svc-hero-meta">

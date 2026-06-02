@@ -83,32 +83,67 @@ export default function Home() {
 
       {/* Hero */}
       <section className="hero">
+        <div className="hero-media">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/hero-europe.jpg"
+            alt="残雪のアルプスと澄んだ湖が広がるヨーロッパの風景"
+            fetchPriority="high"
+          />
+        </div>
         <div className="container">
-          <div className="hero-badge">2026年Q4 運用開始予定</div>
-          <h1>ヨーロッパ渡航に必要な電子渡航認証ETIASの申請</h1>
-          <p className="hero-lead">
-            シェンゲン協定加盟30か国への渡航に必要なETIAS（エティアス）。
-            申請方法、費用、対象国など日本人旅行者が知っておくべき情報をまとめました。
-          </p>
-          <div className="hero-actions">
-            <Link href="/guide/" className="btn btn-primary btn-lg">
-              ETIAS完全ガイドを読む
-            </Link>
-            <Link href="/flow/" className="btn btn-secondary btn-lg">
-              申請手順を確認する
-            </Link>
+          <div className="hero-inner">
+            <span className="hero-kicker">European Travel Authorisation</span>
+            <h1>
+              ヨーロッパ渡航に必要な
+              <br />
+              電子渡航認証 ETIAS
+            </h1>
+            <p className="hero-lead">
+              シェンゲン協定加盟30か国への渡航に必要なETIAS（エティアス）。
+              申請方法、費用、対象国まで、日本人旅行者が知っておくべき情報をわかりやすくまとめました。
+            </p>
+            <div className="hero-actions">
+              <Link href="/guide/" className="btn btn-primary btn-lg">
+                ETIAS完全ガイドを読む
+              </Link>
+              <Link href="/flow/" className="btn btn-secondary btn-lg">
+                申請手順を確認する
+              </Link>
+            </div>
+            <div className="hero-facts">
+              <div>
+                <div className="hero-fact-num">30</div>
+                <div className="hero-fact-label">対象国（シェンゲン協定）</div>
+              </div>
+              <div>
+                <div className="hero-fact-num">€20</div>
+                <div className="hero-fact-label">申請料（約3,200円）</div>
+              </div>
+              <div>
+                <div className="hero-fact-num">3年</div>
+                <div className="hero-fact-label">有効期間</div>
+              </div>
+            </div>
           </div>
+        </div>
+        <div className="hero-scrollcue">
+          <span>Scroll</span>
+          <i />
         </div>
       </section>
 
       {/* About Section */}
       <section className="section">
         <div className="container">
-          <h2 className="section-title">ETIASとは</h2>
-          <p className="section-lead">
-            欧州渡航情報認証制度（ETIAS）は、EU域外からの旅行者を事前にスクリーニングする電子渡航認証システムです。
-          </p>
-          <div className="card-grid card-grid-3">
+          <div className="section-head reveal">
+            <span className="kicker">About ETIAS</span>
+            <h2 className="section-title">ETIASとは</h2>
+            <p className="section-lead">
+              欧州渡航情報認証制度（ETIAS）は、EU域外からの旅行者を事前にスクリーニングする電子渡航認証システムです。
+            </p>
+          </div>
+          <div className="card-grid card-grid-3 reveal reveal-stagger">
             <div className="card">
               <div className="card-icon">01</div>
               <h3>オンライン申請</h3>
@@ -137,12 +172,15 @@ export default function Home() {
       {/* Steps Section */}
       <section className="section section-alt">
         <div className="container">
-          <h2 className="section-title">申請の流れ</h2>
-          <p className="section-lead">
-            ETIASの申請は4つのステップで完了します。所要時間は約10〜15分です。
-          </p>
+          <div className="section-head reveal">
+            <span className="kicker">How to apply</span>
+            <h2 className="section-title">申請の流れ</h2>
+            <p className="section-lead">
+              ETIASの申請は4つのステップで完了します。所要時間は約10〜15分です。
+            </p>
+          </div>
           <div style={{ maxWidth: "640px", margin: "0 auto" }}>
-            <div className="steps">
+            <div className="steps reveal reveal-stagger">
               <div className="step">
                 <div className="step-content">
                   <h3>パスポート情報の入力</h3>
@@ -188,11 +226,14 @@ export default function Home() {
       {/* Target Countries Overview */}
       <section className="section">
         <div className="container">
-          <h2 className="section-title">ETIAS対象国</h2>
-          <p className="section-lead">
-            シェンゲン協定に加盟する30か国が対象です。日本人旅行者に人気の主要国をご紹介します。
-          </p>
-          <div className="country-grid">
+          <div className="section-head reveal">
+            <span className="kicker">Destinations</span>
+            <h2 className="section-title">ETIAS対象国</h2>
+            <p className="section-lead">
+              シェンゲン協定に加盟する30か国が対象です。日本人旅行者に人気の主要国をご紹介します。
+            </p>
+          </div>
+          <div className="country-grid reveal reveal-stagger">
             <Link href="/france/" className="country-card">
               <div className="country-card-name">フランス</div>
             </Link>
@@ -220,7 +261,7 @@ export default function Home() {
       {/* Stats Section */}
       <section className="section section-alt">
         <div className="container">
-          <div className="stat-grid">
+          <div className="stat-grid reveal reveal-stagger">
             <div className="stat-item">
               <div className="stat-number">30</div>
               <div className="stat-label">対象国（シェンゲン協定加盟国）</div>
@@ -240,11 +281,16 @@ export default function Home() {
       {/* FAQ Section */}
       <section className="section">
         <div className="container">
-          <h2 className="section-title">よくある質問</h2>
-          <p className="section-lead">
-            ETIASに関する基本的な疑問にお答えします。
-          </p>
-          <FaqAccordion items={topFaqs} />
+          <div className="section-head reveal">
+            <span className="kicker">FAQ</span>
+            <h2 className="section-title">よくある質問</h2>
+            <p className="section-lead">
+              ETIASに関する基本的な疑問にお答えします。
+            </p>
+          </div>
+          <div className="reveal">
+            <FaqAccordion items={topFaqs} />
+          </div>
           <div className="text-center mt-4">
             <Link href="/faq/" className="btn btn-outline">
               FAQ一覧を見る
@@ -256,8 +302,11 @@ export default function Home() {
       {/* News Section */}
       <section className="section section-alt">
         <div className="container">
-          <h2 className="section-title">最新情報</h2>
-          <div className="news-list">
+          <div className="section-head reveal">
+            <span className="kicker">Updates</span>
+            <h2 className="section-title">最新情報</h2>
+          </div>
+          <div className="news-list reveal">
             <div className="news-item">
               <span className="news-date">2026-05-20</span>
               <div className="news-title">
@@ -294,7 +343,7 @@ export default function Home() {
 
       {/* CTA Section */}
       <section className="cta-section">
-        <div className="container">
+        <div className="container reveal">
           <h2>ETIASの準備を始めましょう</h2>
           <p>
             2026年Q4の運用開始に向けて、今から申請に必要な情報を確認しておきましょう。

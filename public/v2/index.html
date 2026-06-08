@@ -125,7 +125,7 @@ img,svg{display:block}
   mask-image:radial-gradient(60% 60% at 78% 30%,#000,transparent 72%)}
 .grain{position:absolute;inset:0;z-index:-1;opacity:.4;mix-blend-mode:overlay;pointer-events:none;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-.hero .wrap{display:grid;grid-template-columns:1.32fr .68fr;gap:clamp(24px,4vw,56px);align-items:center;width:100%}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) 460px;gap:clamp(24px,4vw,56px);align-items:center;width:100%}
 .hero-eye{color:var(--gold-soft)}
 .hero-eye::before{background:var(--gold-soft)}
 .hero h1{font-family:var(--serif-jp);font-weight:600;font-size:clamp(2rem,4.3vw,3.5rem);
@@ -141,14 +141,14 @@ img,svg{display:block}
 .hero-ref{margin-top:2.4em;font-family:var(--mono);font-size:.68rem;letter-spacing:.18em;color:rgba(205,216,230,.6);text-transform:uppercase}
 
 /* hero seal (right) */
-.hero-seal{justify-self:center;position:relative;width:min(300px,70%);aspect-ratio:1}
+.hero-seal{justify-self:center;position:relative;width:min(450px,100%)}
 .hero-seal .ring{position:absolute;inset:0}
 .hero-seal .ring.r2{inset:11%}
 .hero-seal .core{position:absolute;inset:0;display:grid;place-items:center}
 .hero-stats{grid-column:1/-1;display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(28px,6vw,80px);
   margin-top:clamp(40px,6vh,72px);padding-top:32px;border-top:1px solid rgba(255,255,255,.14);text-align:center}
 .hero-stats>div{display:flex;flex-direction:column;align-items:center}
-@media(max-width:560px){.hero-stats{flex-direction:column;gap:24px}}
+@media(max-width:560px){.hero-stats{flex-direction:row;flex-wrap:nowrap;gap:8px;justify-content:space-between}.hero-stats .hs-num{font-size:1.7rem}.hero-stats .hs-lab{font-size:.5rem;letter-spacing:.04em;margin-top:.5em}}
 .hs-num{font-family:var(--sans);font-size:clamp(2.2rem,4.2vw,3.1rem);font-weight:700;line-height:1;color:#fff;letter-spacing:-.01em}
 .hs-lab{margin-top:.6em;font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(205,216,230,.7)}
 .scrollcue{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;
@@ -303,7 +303,7 @@ img,svg{display:block}
 .hd.scrolled .brand-logo{height:46px}
 .ft-logo{width:200px;height:auto;margin-bottom:14px}
 .cta-logo{width:min(300px,76%);height:auto;margin:0 auto 26px;display:block}
-.hero-logo{width:100%;height:auto;max-width:442px}
+.hero-logo{width:100%;height:auto;max-width:640px}
 @media(max-width:560px){.brand-logo{height:44px}}
 </style>
 </head>

@@ -157,8 +157,12 @@ img,svg{display:block}
 @keyframes cue{0%{transform:scaleY(0);opacity:0}35%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1) translateY(13px);opacity:0}}
 @media(max-width:880px){
   .hero .wrap{grid-template-columns:1fr;gap:18px}
-  .hero-seal{display:none}
-  .hero{min-height:auto}
+  .hero-seal{display:block;order:-1;width:min(240px,66%);margin:0 auto 10px;justify-self:center}
+  .hero-logo{max-width:240px}
+  .hero{min-height:auto;text-align:center}
+  .hero-text{display:flex;flex-direction:column;align-items:center}
+  .hero-lead{margin-inline:auto}
+  .hero-cta{justify-content:center}
 }
 
 /* hero load animation */

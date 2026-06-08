@@ -144,8 +144,9 @@ img,svg{display:block}
 .hero-seal .ring{position:absolute;inset:0}
 .hero-seal .ring.r2{inset:11%}
 .hero-seal .core{position:absolute;inset:0;display:grid;place-items:center}
-.hero-stats{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:clamp(20px,5vw,64px);
-  margin-top:clamp(40px,6vh,72px);padding-top:28px;border-top:1px solid rgba(255,255,255,.14)}
+.hero-stats{grid-column:1/-1;display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(28px,6vw,80px);
+  margin-top:clamp(40px,6vh,72px);padding-top:32px;border-top:1px solid rgba(255,255,255,.14);text-align:center}
+.hero-stats>div{display:flex;flex-direction:column;align-items:center}
 .hs-num{font-family:var(--sans);font-size:clamp(2.2rem,4.2vw,3.1rem);font-weight:700;line-height:1;color:#fff;letter-spacing:-.01em}
 .hs-lab{margin-top:.6em;font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(205,216,230,.7)}
 .scrollcue{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;

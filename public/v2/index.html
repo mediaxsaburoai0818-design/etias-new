@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex,nofollow" />
+<title>ETIAS Application Desk｜TOPリニューアル案 v2（プレビュー）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Noto+Serif+JP:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --navy:#0a2540; --ink:#06182e; --ink-2:#0c2a52;
+  --paper:#faf8f2; --paper-2:#f1ece0; --white:#ffffff;
+  --gold:#b0852b; --gold-soft:#c9a86a; --gold-line:rgba(176,133,43,.42);
+  --azure:#1f56d6;
+  --text:#16202c; --muted:#5d6775;
+  --line:rgba(10,37,64,.12); --line-2:rgba(10,37,64,.2);
+  --serif-en:'Cormorant Garamond',serif;
+  --serif-jp:'Noto Serif JP',serif;
+  --sans:'Zen Kaku Gothic New',system-ui,sans-serif;
+  --mono:'Space Mono',monospace;
+  --maxw:1240px;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans); color:var(--text); background:var(--paper);
+  -webkit-font-smoothing:antialiased; line-height:1.7; overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+img,svg{display:block}
+.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding-inline:clamp(20px,5vw,56px)}
+.mono{font-family:var(--mono);letter-spacing:.16em;text-transform:uppercase}
+
+/* ---------- micro eyebrow ---------- */
+.eyebrow{
+  font-family:var(--mono); font-size:.72rem; font-weight:700; letter-spacing:.32em;
+  text-transform:uppercase; color:var(--gold);
+  display:inline-flex; align-items:center; gap:.85em;
+}
+.eyebrow::before{content:"";width:30px;height:1px;background:var(--gold)}
+.eyebrow.center::after{content:"";width:30px;height:1px;background:var(--gold)}
+
+/* ---------- buttons ---------- */
+.btn{
+  --bg:var(--navy); --fg:#fff;
+  display:inline-flex;align-items:center;gap:.65em;
+  font-family:var(--sans);font-size:.92rem;font-weight:700;letter-spacing:.04em;
+  padding:1.05em 2em;border:1px solid var(--bg);background:var(--bg);color:var(--fg);
+  border-radius:2px;cursor:pointer;position:relative;overflow:hidden;
+  transition:transform .5s var(--ease),box-shadow .5s var(--ease),background .4s var(--ease),color .4s var(--ease);
+}
+.btn .ar{transition:transform .5s var(--ease)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 16px 34px -16px rgba(6,24,46,.6)}
+.btn:hover .ar{transform:translateX(5px)}
+.btn-ghost{--bg:transparent;--fg:var(--navy);border-color:var(--line-2)}
+.btn-ghost:hover{border-color:var(--navy);background:rgba(10,37,64,.04)}
+.btn-gold{--bg:var(--gold);--fg:#fff;border-color:var(--gold)}
+
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(30px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.rv.in{opacity:1;transform:none}
+.stg>*{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.stg.in>*{opacity:1;transform:none}
+.stg.in>*:nth-child(2){transition-delay:.09s}
+.stg.in>*:nth-child(3){transition-delay:.18s}
+.stg.in>*:nth-child(4){transition-delay:.27s}
+.stg.in>*:nth-child(5){transition-delay:.36s}
+
+/* ============ TOP UTILITY STRIP ============ */
+.util{background:var(--ink);color:#cdd8e6;border-bottom:1px solid rgba(255,255,255,.07)}
+.util .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:9px 0;
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase}
+.util .u-r{color:var(--gold-soft)}
+@media(max-width:640px){.util .u-l{display:none}.util .wrap{justify-content:center}}
+
+/* ============ HEADER ============ */
+.hd{position:sticky;top:0;z-index:50;background:rgba(250,248,242,.82);
+  backdrop-filter:saturate(140%) blur(16px);-webkit-backdrop-filter:saturate(140%) blur(16px);
+  border-bottom:1px solid transparent;transition:border-color .4s var(--ease),background .4s var(--ease),padding .4s var(--ease)}
+.hd.scrolled{border-bottom-color:var(--line);background:rgba(250,248,242,.94)}
+.hd .wrap{display:flex;align-items:center;justify-content:space-between;padding-block:clamp(14px,2vw,20px);transition:padding .4s var(--ease)}
+.hd.scrolled .wrap{padding-block:11px}
+.brand{display:flex;align-items:center;gap:13px}
+.brand .seal{width:42px;height:42px;flex:0 0 auto}
+.brand .bn{display:flex;flex-direction:column;line-height:1.05}
+.brand .bn b{font-family:var(--serif-en);font-size:1.32rem;font-weight:600;letter-spacing:.02em;color:var(--navy)}
+.brand .bn small{font-family:var(--mono);font-size:.56rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);margin-top:3px}
+.nav{display:flex;align-items:center;gap:clamp(18px,2.4vw,34px)}
+.nav a{font-size:.86rem;font-weight:500;letter-spacing:.04em;color:var(--text);position:relative;padding:4px 0;transition:color .3s}
+.nav a::after{content:"";position:absolute;left:0;right:100%;bottom:-2px;height:1px;background:var(--gold);transition:right .4s var(--ease)}
+.nav a:hover{color:var(--navy)}
+.nav a:hover::after{right:0}
+.hd-cta{font-family:var(--sans);font-size:.82rem;font-weight:700;letter-spacing:.04em;color:#fff;background:var(--navy);padding:.7em 1.3em;border-radius:2px;transition:background .3s,transform .4s var(--ease)}
+.hd-cta:hover{background:var(--ink);transform:translateY(-1px)}
+.burger{display:none;background:none;border:0;cursor:pointer;color:var(--navy);padding:6px}
+.mnav{display:none}
+@media(max-width:980px){
+  .nav,.hd-cta{display:none}
+  .burger{display:block}
+  .mnav{display:block;position:fixed;inset:0 0 0 auto;width:min(82vw,360px);background:var(--paper);
+    z-index:60;transform:translateX(100%);transition:transform .5s var(--ease);box-shadow:-20px 0 60px -30px rgba(6,24,46,.5);padding:90px 34px 40px}
+  .mnav.open{transform:none}
+  .mnav a{display:block;font-family:var(--serif-jp);font-size:1.1rem;font-weight:600;color:var(--navy);padding:16px 0;border-bottom:1px solid var(--line)}
+  .mclose{position:absolute;top:24px;right:28px;background:none;border:0;color:var(--navy);cursor:pointer}
+  .mscrim{position:fixed;inset:0;background:rgba(6,24,46,.4);z-index:55;opacity:0;pointer-events:none;transition:opacity .4s}
+  .mscrim.open{opacity:1;pointer-events:auto}
+}
+
+/* ============ HERO ============ */
+.hero{position:relative;background:var(--ink);color:#fff;overflow:hidden;isolation:isolate;
+  min-height:calc(100vh - 92px);display:flex;align-items:center;
+  padding-block:clamp(70px,12vh,130px)}
+.hero-bg{position:absolute;inset:0;z-index:-3;
+  background:
+    radial-gradient(60% 80% at 78% 26%,rgba(31,86,214,.42),transparent 60%),
+    radial-gradient(50% 70% at 20% 88%,rgba(176,133,43,.20),transparent 62%),
+    radial-gradient(90% 120% at 50% -10%,rgba(12,42,80,.7),transparent 70%),
+    linear-gradient(160deg,#05132a 0%,#0a2540 55%,#0c2a52 100%)}
+.guilloche{position:absolute;inset:-20% -10%;z-index:-2;opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='900' viewBox='0 0 900 900'%3E%3Cg fill='none' stroke='%23cdb37a' stroke-width='.5' opacity='.5'%3E%3Ccircle cx='450' cy='450' r='120'/%3E%3Ccircle cx='450' cy='450' r='160'/%3E%3Ccircle cx='450' cy='450' r='200'/%3E%3Ccircle cx='450' cy='450' r='240'/%3E%3Ccircle cx='450' cy='450' r='280'/%3E%3Ccircle cx='450' cy='450' r='320'/%3E%3Ccircle cx='450' cy='450' r='360'/%3E%3Ccircle cx='450' cy='450' r='400'/%3E%3C/g%3E%3C/svg%3E");
+  background-position:78% 30%;background-repeat:no-repeat;background-size:min(1100px,150%);
+  -webkit-mask-image:radial-gradient(60% 60% at 78% 30%,#000,transparent 72%);
+  mask-image:radial-gradient(60% 60% at 78% 30%,#000,transparent 72%);
+  animation:spin 120s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.grain{position:absolute;inset:0;z-index:-1;opacity:.4;mix-blend-mode:overlay;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.hero .wrap{display:grid;grid-template-columns:1.32fr .68fr;gap:clamp(24px,4vw,56px);align-items:center;width:100%}
+.hero-eye{color:var(--gold-soft)}
+.hero-eye::before{background:var(--gold-soft)}
+.hero h1{font-family:var(--serif-jp);font-weight:600;font-size:clamp(2rem,4.3vw,3.5rem);
+  line-height:1.24;letter-spacing:.01em;margin:.6em 0 0;word-break:keep-all;text-wrap:balance}
+.hero h1 .li{display:inline-block;background:linear-gradient(90deg,#fff 60%,#dfe8f6);-webkit-background-clip:text;background-clip:text}
+.hero-lead{margin-top:1.5em;max-width:540px;font-size:clamp(1rem,1.3vw,1.12rem);line-height:2.05;color:rgba(226,234,247,.86)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:2.4em}
+.hero-cta .btn{--bg:#fff;--fg:var(--navy);border-color:#fff}
+.hero-cta .btn:hover{--bg:#eaf0fb}
+.hero-cta .btn-ghost{--bg:transparent;--fg:#fff;border-color:rgba(255,255,255,.4)}
+.hero-cta .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+.hero-ref{margin-top:2.4em;font-family:var(--mono);font-size:.68rem;letter-spacing:.18em;color:rgba(205,216,230,.6);text-transform:uppercase}
+
+/* hero seal (right) */
+.hero-seal{justify-self:center;position:relative;width:min(300px,70%);aspect-ratio:1}
+.hero-seal .ring{position:absolute;inset:0;animation:spin 90s linear infinite}
+.hero-seal .ring.r2{animation-duration:60s;animation-direction:reverse;inset:11%}
+.hero-seal .core{position:absolute;inset:0;display:grid;place-items:center}
+.hero-stats{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:clamp(20px,5vw,64px);
+  margin-top:clamp(40px,6vh,72px);padding-top:28px;border-top:1px solid rgba(255,255,255,.14)}
+.hs-num{font-family:var(--serif-en);font-size:clamp(2.4rem,4.6vw,3.4rem);font-weight:600;line-height:1;color:#fff}
+.hs-lab{margin-top:.6em;font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(205,216,230,.7)}
+.scrollcue{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.3em;color:rgba(205,216,230,.6);text-transform:uppercase;z-index:1}
+.scrollcue i{width:1px;height:40px;background:linear-gradient(rgba(255,255,255,.6),transparent);animation:cue 2.2s var(--ease) infinite;transform-origin:top}
+@keyframes cue{0%{transform:scaleY(0);opacity:0}35%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1) translateY(13px);opacity:0}}
+@media(max-width:880px){
+  .hero .wrap{grid-template-columns:1fr;gap:18px}
+  .hero-seal{display:none}
+  .hero{min-height:auto}
+}
+
+/* hero load animation */
+.hero-text>*{opacity:0;transform:translateY(22px);animation:up 1s var(--ease) forwards}
+.hero-text>*:nth-child(1){animation-delay:.1s}.hero-text>*:nth-child(2){animation-delay:.22s}
+.hero-text>*:nth-child(3){animation-delay:.34s}.hero-text>*:nth-child(4){animation-delay:.46s}
+.hero-text>*:nth-child(5){animation-delay:.58s}
+@keyframes up{to{opacity:1;transform:none}}
+
+/* ============ TRUST MARQUEE ============ */
+.trust{background:var(--navy);color:#dbe4f0;border-block:1px solid var(--gold-line);overflow:hidden}
+.trust-track{display:flex;gap:50px;white-space:nowrap;padding:13px 0;font-family:var(--mono);
+  font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;animation:marq 38s linear infinite;width:max-content}
+.trust-track span{display:inline-flex;align-items:center;gap:50px}
+.trust-track b{color:var(--gold-soft);font-weight:400}
+.trust .dot{width:4px;height:4px;border-radius:50%;background:var(--gold);display:inline-block}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* ============ SECTION SHELL ============ */
+.sec{padding-block:clamp(76px,12vh,150px);position:relative}
+.sec-paper2{background:var(--paper-2)}
+.sec-head{max-width:760px;margin-bottom:clamp(44px,6vh,70px)}
+.sec-head.center{margin-inline:auto;text-align:center}
+.sec-head.center .eyebrow{justify-content:center}
+.sec-num{font-family:var(--serif-en);font-size:clamp(3.4rem,8vw,6rem);font-weight:600;line-height:.9;
+  color:transparent;-webkit-text-stroke:1px var(--line-2);letter-spacing:.02em;display:block;margin-bottom:.1em}
+.sec-title{font-family:var(--serif-jp);font-weight:600;font-size:clamp(1.8rem,3.6vw,2.7rem);
+  line-height:1.34;letter-spacing:.02em;color:var(--navy);margin-top:.34em}
+.sec-lead{margin-top:1.1em;font-size:clamp(.98rem,1.25vw,1.08rem);line-height:2.05;color:var(--muted);max-width:640px}
+.sec-head.center .sec-lead{margin-inline:auto}
+
+/* ============ ABOUT CARDS ============ */
+.doc-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,1.8vw,24px)}
+.doc-card{position:relative;background:var(--white);border:1px solid var(--line);
+  padding:clamp(30px,3vw,44px) clamp(24px,2.6vw,36px);transition:transform .55s var(--ease),box-shadow .55s var(--ease),border-color .55s var(--ease)}
+.doc-card::before,.doc-card::after{content:"";position:absolute;width:14px;height:14px;border:1px solid var(--gold);opacity:.55}
+.doc-card::before{top:12px;left:12px;border-right:0;border-bottom:0}
+.doc-card::after{bottom:12px;right:12px;border-left:0;border-top:0}
+.doc-card:hover{transform:translateY(-7px);border-color:var(--line-2);box-shadow:0 36px 70px -40px rgba(10,37,64,.42)}
+.dc-ix{font-family:var(--mono);font-size:.68rem;letter-spacing:.2em;color:var(--gold);text-transform:uppercase}
+.dc-no{font-family:var(--serif-en);font-size:2.6rem;font-weight:600;color:var(--navy);line-height:1;margin:.18em 0 .5em}
+.doc-card h3{font-family:var(--serif-jp);font-size:1.22rem;font-weight:600;color:var(--navy);margin-bottom:.6em}
+.doc-card p{font-size:.92rem;line-height:1.95;color:var(--muted)}
+
+/* ============ STEPS ============ */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;counter-reset:s}
+.steps::before{content:"";position:absolute;top:27px;left:8%;right:8%;height:1px;
+  background:repeating-linear-gradient(90deg,var(--gold-line) 0 8px,transparent 8px 16px)}
+.step{padding:0 clamp(12px,1.4vw,22px);position:relative}
+.step-n{width:56px;height:56px;border-radius:50%;background:var(--paper);border:1px solid var(--gold-line);
+  display:grid;place-items:center;font-family:var(--serif-en);font-size:1.4rem;font-weight:600;color:var(--navy);
+  position:relative;z-index:1;margin-bottom:24px;transition:.45s var(--ease)}
+.sec-paper2 .step-n{background:var(--paper-2)}
+.step:hover .step-n{background:var(--navy);color:#fff;border-color:var(--navy);transform:translateY(-3px)}
+.step .st-lab{font-family:var(--mono);font-size:.62rem;letter-spacing:.2em;color:var(--gold);text-transform:uppercase}
+.step h3{font-family:var(--serif-jp);font-size:1.08rem;font-weight:600;color:var(--navy);margin:.5em 0 .55em}
+.step p{font-size:.88rem;line-height:1.9;color:var(--muted)}
+@media(max-width:880px){.steps{grid-template-columns:1fr;gap:30px}.steps::before{display:none}}
+
+/* ============ COUNTRIES ============ */
+.ctry{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(12px,1.3vw,16px)}
+.ctry a{position:relative;border:1px solid var(--line);background:var(--white);padding:34px 18px 26px;
+  display:flex;flex-direction:column;gap:10px;transition:.5s var(--ease);overflow:hidden}
+.ctry a .code{font-family:var(--mono);font-size:.7rem;letter-spacing:.2em;color:var(--gold);text-transform:uppercase}
+.ctry a .nm{font-family:var(--serif-jp);font-size:1.12rem;font-weight:600;color:var(--navy)}
+.ctry a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;background:linear-gradient(90deg,var(--gold),var(--azure));transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.ctry a:hover{transform:translateY(-6px);box-shadow:0 30px 56px -36px rgba(10,37,64,.4);border-color:var(--line-2)}
+.ctry a:hover::after{transform:scaleX(1)}
+@media(max-width:880px){.ctry{grid-template-columns:repeat(2,1fr)}}
+
+/* ============ STATS REGISTER ============ */
+.register{background:var(--ink);color:#fff;position:relative;overflow:hidden;isolation:isolate}
+.register::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.5;
+  background:radial-gradient(60% 120% at 50% 0,rgba(31,86,214,.32),transparent 60%),radial-gradient(50% 100% at 90% 100%,rgba(176,133,43,.2),transparent 60%)}
+.reg-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+.reg-item{text-align:center;padding:clamp(28px,4vw,52px) 16px;border-right:1px solid rgba(255,255,255,.12)}
+.reg-item:last-child{border-right:0}
+.reg-lab-top{font-family:var(--mono);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:18px}
+.reg-num{font-family:var(--serif-en);font-size:clamp(2.8rem,6vw,4.6rem);font-weight:600;line-height:1;color:#fff}
+.reg-lab{margin-top:.8em;font-size:.84rem;color:rgba(205,216,230,.78);letter-spacing:.03em}
+@media(max-width:880px){.reg-grid{grid-template-columns:1fr}.reg-item{border-right:0;border-bottom:1px solid rgba(255,255,255,.12)}.reg-item:last-child{border-bottom:0}}
+
+/* ============ FAQ ============ */
+.faq{max-width:860px;margin:0 auto}
+.qa{border-bottom:1px solid var(--line)}
+.qa summary{list-style:none;cursor:pointer;display:flex;gap:18px;align-items:baseline;padding:26px 44px 26px 0;position:relative}
+.qa summary::-webkit-details-marker{display:none}
+.qa .qix{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;color:var(--gold);flex:0 0 auto;padding-top:.25em}
+.qa .qt{font-family:var(--serif-jp);font-size:1.06rem;font-weight:600;color:var(--navy);transition:color .3s}
+.qa summary::after{content:"";position:absolute;right:6px;top:32px;width:11px;height:11px;border-right:1.5px solid var(--gold);border-bottom:1.5px solid var(--gold);transform:rotate(45deg);transition:transform .35s var(--ease)}
+.qa[open] summary::after{transform:rotate(-135deg)}
+.qa summary:hover .qt{color:var(--azure)}
+.qa-a{padding:0 0 28px 42px;font-size:.93rem;line-height:2.05;color:var(--muted);max-width:720px}
+@media(max-width:560px){.qa-a{padding-left:0}}
+
+/* ============ NEWS ============ */
+.news{max-width:880px;margin:0 auto}
+.nw{display:flex;gap:clamp(18px,3vw,40px);align-items:baseline;padding:24px 4px;border-bottom:1px solid var(--line);transition:background .3s}
+.nw:hover{background:rgba(10,37,64,.02)}
+.nw time{font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;color:var(--gold);flex:0 0 auto}
+.nw a{font-size:.98rem;font-weight:500;color:var(--text);transition:color .3s}
+.nw a:hover{color:var(--azure)}
+
+/* ============ CTA ============ */
+.cta{position:relative;background:var(--ink);color:#fff;text-align:center;overflow:hidden;isolation:isolate;
+  padding-block:clamp(80px,13vh,150px)}
+.cta::before{content:"";position:absolute;inset:0;z-index:-2;
+  background:radial-gradient(55% 110% at 50% -5%,rgba(31,86,214,.4),transparent 60%),radial-gradient(45% 90% at 85% 110%,rgba(176,133,43,.22),transparent 60%)}
+.cta .seal-lg{width:74px;height:74px;margin:0 auto 28px}
+.cta h2{font-family:var(--serif-jp);font-size:clamp(1.8rem,3.8vw,2.9rem);font-weight:600;letter-spacing:.02em;margin-bottom:.55em}
+.cta p{max-width:620px;margin:0 auto 2.2em;font-size:clamp(.98rem,1.3vw,1.1rem);line-height:2.05;color:rgba(226,234,247,.88)}
+.cta .btn{--bg:#fff;--fg:var(--navy);border-color:#fff}
+.cta .btn:hover{--bg:#eef3fc}
+
+/* ============ FOOTER ============ */
+.ft{background:var(--navy);color:#c8d3e2;border-top:3px solid var(--gold);padding-block:clamp(58px,8vh,86px) 34px}
+.ft-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1fr;gap:clamp(24px,3vw,40px);padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.1)}
+.ft-brand .seal{width:46px;height:46px;margin-bottom:18px}
+.ft-brand b{font-family:var(--serif-en);font-size:1.4rem;font-weight:600;color:#fff;display:block;letter-spacing:.02em}
+.ft-brand small{font-family:var(--mono);font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-soft);display:block;margin-top:6px}
+.ft-brand p{font-size:.84rem;line-height:1.9;color:rgba(200,211,226,.72);margin-top:18px;max-width:300px}
+.ft-col h4{font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:18px}
+.ft-col ul{list-style:none}
+.ft-col li{margin-bottom:11px}
+.ft-col a{font-size:.86rem;color:rgba(200,211,226,.82);transition:color .3s}
+.ft-col a:hover{color:#fff}
+.ft-bottom{padding-top:28px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;align-items:center}
+.ft-bottom .disc{font-size:.78rem;line-height:1.8;color:rgba(200,211,226,.66);max-width:560px}
+.ft-legal{display:flex;flex-wrap:wrap;gap:18px}
+.ft-legal a{font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(200,211,226,.6);transition:color .3s}
+.ft-legal a:hover{color:var(--gold-soft)}
+.ft-copy{margin-top:26px;font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;color:rgba(200,211,226,.45);text-transform:uppercase}
+@media(max-width:980px){.ft-top{grid-template-columns:1fr 1fr}.ft-brand{grid-column:1/-1}}
+@media(max-width:560px){.ft-top{grid-template-columns:1fr}}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .rv,.stg>*,.hero-text>*{opacity:1!important;transform:none!important}
+}
+</style>
+</head>
+<body>
+
+<!-- ======= UTILITY STRIP ======= -->
+<div class="util"><div class="wrap">
+  <span class="u-l">European Travel Information and Authorisation System</span>
+  <span class="u-r">運用開始予定 — 2026 Q4</span>
+</div></div>
+
+<!-- ======= HEADER ======= -->
+<header class="hd" id="hd"><div class="wrap">
+  <a class="brand" href="#top" aria-label="ETIAS Application Desk">
+    <svg class="seal" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+      <circle cx="50" cy="50" r="47" stroke="#0a2540" stroke-width="1.4"/>
+      <circle cx="50" cy="50" r="41" stroke="#b0852b" stroke-width=".8"/>
+      <g stroke="#b0852b" stroke-width="1">
+        <path d="M50 9v6M50 85v6M9 50h6M85 50h6"/>
+      </g>
+      <circle cx="50" cy="50" r="33" stroke="#0a2540" stroke-width=".6" opacity=".5"/>
+      <path d="M50 26l2.6 6.4 6.9.5-5.3 4.5 1.7 6.7L50 40.9l-5.9 3.7 1.7-6.7-5.3-4.5 6.9-.5z" fill="#b0852b"/>
+      <text x="50" y="68" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="26" font-weight="600" fill="#0a2540">E</text>
+    </svg>
+    <span class="bn"><b>ETIAS Application Desk</b><small>European Travel Authorisation</small></span>
+  </a>
+  <nav class="nav">
+    <a href="#about">ETIASとは</a>
+    <a href="#steps">申請手順</a>
+    <a href="#countries">対象国</a>
+    <a href="#stats">費用</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+  <a class="hd-cta" href="#cta">ETIAS完全ガイド</a>
+  <button class="burger" id="burger" aria-label="メニュー" aria-expanded="false">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+  </button>
+</div></header>
+<div class="mscrim" id="mscrim"></div>
+<nav class="mnav" id="mnav">
+  <button class="mclose" id="mclose" aria-label="閉じる"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M6 18L18 6"/></svg></button>
+  <a href="#about">ETIASとは</a>
+  <a href="#steps">申請手順</a>
+  <a href="#countries">対象国</a>
+  <a href="#stats">費用</a>
+  <a href="#faq">FAQ</a>
+</nav>
+
+<!-- ======= HERO ======= -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div><div class="guilloche"></div><div class="grain"></div>
+  <div class="wrap">
+    <div class="hero-text">
+      <span class="eyebrow hero-eye">European Travel Authorisation</span>
+      <h1><span class="li">ヨーロッパ渡航に必要な</span><br><span class="li">電子渡航認証 ETIAS</span></h1>
+      <p class="hero-lead">シェンゲン協定加盟30か国への渡航に必要なETIAS（エティアス）。申請方法、費用、対象国まで、日本人旅行者が知っておくべき情報をわかりやすくまとめました。</p>
+      <div class="hero-cta">
+        <a class="btn" href="#cta">ETIAS完全ガイドを読む <span class="ar">→</span></a>
+        <a class="btn btn-ghost" href="#steps">申請手順を確認する</a>
+      </div>
+      <p class="hero-ref">Ref. ETIAS · Schengen Area · Issued for Japanese Nationals</p>
+    </div>
+    <div class="hero-seal" aria-hidden="true">
+      <svg class="ring" viewBox="0 0 200 200" fill="none">
+        <circle cx="100" cy="100" r="96" stroke="rgba(201,168,106,.7)" stroke-width="1"/>
+        <circle cx="100" cy="100" r="88" stroke="rgba(201,168,106,.35)" stroke-width=".6"/>
+        <g stroke="rgba(201,168,106,.6)" stroke-width="1">
+          <path id="tk" d="M100 6v8"/>
+        </g>
+        <g fill="rgba(201,168,106,.85)">
+          <!-- bezel ticks -->
+        </g>
+      </svg>
+      <svg class="ring r2" viewBox="0 0 200 200" fill="none">
+        <circle cx="100" cy="100" r="78" stroke="rgba(255,255,255,.16)" stroke-width="1" stroke-dasharray="2 7"/>
+      </svg>
+      <div class="core">
+        <svg viewBox="0 0 200 200" width="60%" fill="none">
+          <circle cx="100" cy="100" r="62" stroke="rgba(201,168,106,.8)" stroke-width="1.2"/>
+          <path d="M100 58l4.4 10.9 11.7.8-9 7.7 2.9 11.4L100 94.4l-10 6.2 2.9-11.4-9-7.7 11.7-.8z" fill="rgba(201,168,106,.95)"/>
+          <text x="100" y="150" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="64" font-weight="600" fill="#fff">E</text>
+        </svg>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div><div class="hs-num">30</div><div class="hs-lab">対象国（シェンゲン協定）</div></div>
+      <div><div class="hs-num">€20</div><div class="hs-lab">申請料（約3,200円）</div></div>
+      <div><div class="hs-num">3年</div><div class="hs-lab">有効期間</div></div>
+    </div>
+  </div>
+  <div class="scrollcue"><span>Scroll</span><i></i></div>
+</section>
+
+<!-- ======= TRUST MARQUEE ======= -->
+<div class="trust"><div class="trust-track">
+  <span><b>European Travel Information and Authorisation System</b><i class="dot"></i>Schengen Area · 30 Countries<i class="dot"></i>For Japanese Travellers<i class="dot"></i>€20 Application Fee<i class="dot"></i>Valid 3 Years<i class="dot"></i></span>
+  <span><b>European Travel Information and Authorisation System</b><i class="dot"></i>Schengen Area · 30 Countries<i class="dot"></i>For Japanese Travellers<i class="dot"></i>€20 Application Fee<i class="dot"></i>Valid 3 Years<i class="dot"></i></span>
+</div></div>
+
+<!-- ======= ABOUT ======= -->
+<section class="sec" id="about">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-num">01</span>
+      <span class="eyebrow">About ETIAS</span>
+      <h2 class="sec-title">ETIASとは</h2>
+      <p class="sec-lead">欧州渡航情報認証制度（ETIAS）は、EU域外からの旅行者を事前にスクリーニングする電子渡航認証システムです。</p>
+    </div>
+    <div class="doc-cards stg">
+      <div class="doc-card">
+        <div class="dc-ix">Art. 01</div><div class="dc-no">01</div>
+        <h3>オンライン申請</h3>
+        <p>パスポート情報や渡航目的などの基本情報をオンラインフォームに入力するだけ。空港のチェックインカウンターやビザセンターへ出向く必要はなく、自宅から24時間いつでも申請できます。</p>
+      </div>
+      <div class="doc-card">
+        <div class="dc-ix">Art. 02</div><div class="dc-no">02</div>
+        <h3>申請料20ユーロ</h3>
+        <p>申請費用は20ユーロ（日本円で約3,200円相当）。18歳未満と70歳以上は無料です。クレジットカードやデビットカードでの支払いに対応しており、ビザの取得費用と比較すると大幅に手軽です。</p>
+      </div>
+      <div class="doc-card">
+        <div class="dc-ix">Art. 03</div><div class="dc-no">03</div>
+        <h3>3年間有効</h3>
+        <p>一度承認されたETIASは3年間有効で、その期間内であれば何度でもシェンゲン圏へ渡航できます。1回の滞在は180日間のうち最大90日間まで。パスポートを更新した場合は再申請が必要です。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= STEPS ======= -->
+<section class="sec sec-paper2" id="steps">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow center">How to apply</span>
+      <h2 class="sec-title">申請の流れ</h2>
+      <p class="sec-lead">ETIASの申請は4つのステップで完了します。所要時間は約10〜15分です。</p>
+    </div>
+    <div class="steps stg">
+      <div class="step"><div class="step-n">1</div><div class="st-lab">Step 01</div><h3>パスポート情報の入力</h3><p>有効なICチップ搭載パスポートの情報を入力します。氏名、生年月日、パスポート番号、有効期限などの基本的な個人情報を正確に記入してください。</p></div>
+      <div class="step"><div class="step-n">2</div><div class="st-lab">Step 02</div><h3>渡航情報・セキュリティ質問</h3><p>渡航先の国名、滞在先の住所、渡航目的などを回答します。加えて、健康状態や犯罪歴に関するセキュリティ質問にも回答する必要があります。</p></div>
+      <div class="step"><div class="step-n">3</div><div class="st-lab">Step 03</div><h3>申請料の支払い</h3><p>申請料20ユーロをクレジットカードまたはデビットカードで支払います。18歳未満および70歳以上の方は申請料が免除されます。</p></div>
+      <div class="step"><div class="step-n">4</div><div class="st-lab">Step 04</div><h3>承認結果の受け取り</h3><p>ほとんどの申請は数分から数時間以内に処理されます。結果はメールで通知されます。承認されたETIASはパスポートと電子的にリンクされるため、印刷は不要です。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= COUNTRIES ======= -->
+<section class="sec" id="countries">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow center">Destinations</span>
+      <h2 class="sec-title">ETIAS対象国</h2>
+      <p class="sec-lead">シェンゲン協定に加盟する30か国が対象です。日本人旅行者に人気の主要国をご紹介します。</p>
+    </div>
+    <div class="ctry stg">
+      <a href="#"><span class="code">FR</span><span class="nm">フランス</span></a>
+      <a href="#"><span class="code">IT</span><span class="nm">イタリア</span></a>
+      <a href="#"><span class="code">ES</span><span class="nm">スペイン</span></a>
+      <a href="#"><span class="code">DE</span><span class="nm">ドイツ</span></a>
+      <a href="#"><span class="code">CH</span><span class="nm">スイス</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ======= STATS REGISTER ======= -->
+<section class="sec register" id="stats" style="padding-block:0">
+  <div class="reg-grid">
+    <div class="reg-item rv"><div class="reg-lab-top">Member States</div><div class="reg-num">30</div><div class="reg-lab">対象国（シェンゲン協定加盟国）</div></div>
+    <div class="reg-item rv"><div class="reg-lab-top">Application Fee</div><div class="reg-num">20<span style="font-size:.4em;font-family:var(--mono);letter-spacing:.1em"> EUR</span></div><div class="reg-lab">申請料（約3,200円）</div></div>
+    <div class="reg-item rv"><div class="reg-lab-top">Validity</div><div class="reg-num">3<span style="font-size:.4em;font-family:var(--mono)"> 年間</span></div><div class="reg-lab">有効期間（複数回渡航可能）</div></div>
+  </div>
+</section>
+
+<!-- ======= FAQ ======= -->
+<section class="sec sec-paper2" id="faq">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow center">FAQ</span>
+      <h2 class="sec-title">よくある質問</h2>
+      <p class="sec-lead">ETIASに関する基本的な疑問にお答えします。</p>
+    </div>
+    <div class="faq rv">
+      <details class="qa" open><summary><span class="qix">Q1</span><span class="qt">ETIASとは何ですか？</span></summary><div class="qa-a">ETIAS（European Travel Information and Authorisation System）は、シェンゲン協定加盟国への渡航前にオンラインで取得する電子渡航認証です。日本のパスポート保持者がビザなしでヨーロッパを訪問する際に必要となる制度で、2026年Q4に運用開始が予定されています。アメリカのESTA（電子渡航認証システム）に似た仕組みです。</div></details>
+      <details class="qa"><summary><span class="qix">Q2</span><span class="qt">日本人はETIASが必要ですか？</span></summary><div class="qa-a">はい、日本国籍の方がシェンゲン協定加盟国（フランス、ドイツ、イタリア、スペインなど30か国）へ短期渡航する場合、ETIAS制度の運用開始後はETIASの取得が必要になります。観光、ビジネス、トランジットなど90日以内の滞在が対象です。</div></details>
+      <details class="qa"><summary><span class="qix">Q3</span><span class="qt">ETIASの申請料はいくらですか？</span></summary><div class="qa-a">ETIASの申請料は20ユーロです。当初は7ユーロとされていましたが、制度の運用コストを踏まえて20ユーロに改定されました。18歳未満および70歳以上の方は無料で申請できます。支払いはクレジットカードまたはデビットカードで行います。</div></details>
+      <details class="qa"><summary><span class="qix">Q4</span><span class="qt">ETIASの有効期間はどのくらいですか？</span></summary><div class="qa-a">ETIASは承認されてから3年間有効です。ただし、パスポートの有効期限がETIASの有効期限より先に切れる場合は、パスポートの有効期限と同時にETIASも失効します。新しいパスポートを取得した場合は、ETIASの再申請が必要です。</div></details>
+      <details class="qa"><summary><span class="qix">Q5</span><span class="qt">ETIASはいつから必要になりますか？</span></summary><div class="qa-a">ETIASポータルは2026年Q4（10月〜12月）の開始が予定されています。運用開始後は、シェンゲン協定加盟国へ渡航する前にオンラインでETIASを取得する必要があります。開始日が正式に確定次第、当サイトでお知らせいたします。</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ======= NEWS ======= -->
+<section class="sec" id="news">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow center">Updates</span>
+      <h2 class="sec-title">最新情報</h2>
+    </div>
+    <div class="news rv">
+      <div class="nw"><time>2026-05-20</time><a href="#">ETIAS完全ガイドを公開しました</a></div>
+      <div class="nw"><time>2026-05-20</time><a href="#">ETIAS申請料20ユーロの詳細ページを追加</a></div>
+      <div class="nw"><time>2026-05-20</time><a href="#">シェンゲン協定30か国の対象国一覧を公開</a></div>
+      <div class="nw"><time>2026-05-20</time><a href="#">ETIAS・ESTA・K-ETA徹底比較ページを追加</a></div>
+      <div class="nw"><time>2026-05-20</time><a href="#">フランス、イタリア、スペインなど国別ガイドを公開</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= CTA ======= -->
+<section class="cta" id="cta">
+  <div class="wrap rv">
+    <svg class="seal-lg" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+      <circle cx="50" cy="50" r="47" stroke="#c9a86a" stroke-width="1.2"/>
+      <circle cx="50" cy="50" r="40" stroke="rgba(201,168,106,.4)" stroke-width=".7"/>
+      <path d="M50 28l3.4 8.4 9 .6-7 5.9 2.3 8.8L50 47.4l-7.7 4.8 2.3-8.8-7-5.9 9-.6z" fill="#c9a86a"/>
+      <text x="50" y="74" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="30" font-weight="600" fill="#fff">E</text>
+    </svg>
+    <h2>ETIASの準備を始めましょう</h2>
+    <p>2026年Q4の運用開始に向けて、今から申請に必要な情報を確認しておきましょう。パスポートの有効期限や渡航計画の確認がスムーズな申請への第一歩です。</p>
+    <a class="btn" href="#about">ETIAS完全ガイドを読む <span class="ar">→</span></a>
+  </div>
+</section>
+
+<!-- ======= FOOTER ======= -->
+<footer class="ft"><div class="wrap">
+  <div class="ft-top">
+    <div class="ft-brand">
+      <svg class="seal" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+        <circle cx="50" cy="50" r="47" stroke="#c9a86a" stroke-width="1.2"/>
+        <circle cx="50" cy="50" r="40" stroke="rgba(201,168,106,.4)" stroke-width=".7"/>
+        <path d="M50 28l3.4 8.4 9 .6-7 5.9 2.3 8.8L50 47.4l-7.7 4.8 2.3-8.8-7-5.9 9-.6z" fill="#c9a86a"/>
+        <text x="50" y="74" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="30" font-weight="600" fill="#fff">E</text>
+      </svg>
+      <b>ETIAS Application Desk</b>
+      <small>European Travel Authorisation</small>
+      <p>ETIAS Application Desk - 日本人旅行者のための欧州渡航認証サポート</p>
+    </div>
+    <div class="ft-col"><h4>ETIASについて</h4><ul>
+      <li><a href="#">ETIAS完全ガイド</a></li><li><a href="#">申請方法・手順</a></li>
+      <li><a href="#">費用・支払い方法</a></li><li><a href="#">EESとの関係</a></li></ul></div>
+    <div class="ft-col"><h4>国別ガイド</h4><ul>
+      <li><a href="#">フランス</a></li><li><a href="#">イタリア</a></li><li><a href="#">スペイン</a></li>
+      <li><a href="#">ドイツ</a></li><li><a href="#">スイス</a></li></ul></div>
+    <div class="ft-col"><h4>比較・FAQ</h4><ul>
+      <li><a href="#">ETIAS vs ESTA vs K-ETA</a></li><li><a href="#">ESTA経験者向け</a></li>
+      <li><a href="#">よくある質問</a></li><li><a href="#">却下・トラブル対応</a></li></ul></div>
+    <div class="ft-col"><h4>サイト情報</h4><ul>
+      <li><a href="#">対象国一覧</a></li><li><a href="#">利用規約</a></li>
+      <li><a href="#">個人情報保護に関する基本方針</a></li><li><a href="#">コンテンツポリシー</a></li>
+      <li><a href="#">特定商取引法に基づく表記</a></li></ul></div>
+  </div>
+  <div class="ft-bottom">
+    <p class="disc">当サイトはEU公式機関とは関係のない独立した情報提供サービスです。</p>
+    <div class="ft-legal">
+      <a href="#">利用規約</a><a href="#">個人情報保護に関する基本方針</a>
+      <a href="#">コンテンツポリシー</a><a href="#">特定商取引法に基づく表記</a>
+    </div>
+  </div>
+  <div class="ft-copy">© 2026 ETIAS Application Desk</div>
+</div></footer>
+
+<script>
+(function(){
+  // header scroll state
+  var hd=document.getElementById('hd');
+  var onScroll=function(){ hd.classList.toggle('scrolled', window.scrollY>20); };
+  onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
+
+  // mobile nav
+  var burger=document.getElementById('burger'), mnav=document.getElementById('mnav'),
+      mscrim=document.getElementById('mscrim'), mclose=document.getElementById('mclose');
+  function openM(o){ mnav.classList.toggle('open',o); mscrim.classList.toggle('open',o); burger.setAttribute('aria-expanded',o);
+    document.body.style.overflow=o?'hidden':''; }
+  burger.addEventListener('click',function(){openM(true)});
+  mclose.addEventListener('click',function(){openM(false)});
+  mscrim.addEventListener('click',function(){openM(false)});
+  mnav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){openM(false)})});
+
+  // reveal
+  var targets=document.querySelectorAll('.rv,.stg');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},
+      {threshold:.12,rootMargin:'0px 0px 10% 0px'});
+    targets.forEach(function(t){io.observe(t)});
+    setTimeout(function(){targets.forEach(function(t){t.classList.add('in')})},1800);
+  } else { targets.forEach(function(t){t.classList.add('in')}); }
+})();
+</script>
+</body>
+</html>

@@ -191,6 +191,7 @@ img,svg{display:block}
 
 /* ============ ABOUT CARDS ============ */
 .doc-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,1.8vw,24px)}
+@media(max-width:880px){.doc-cards{grid-template-columns:1fr}}
 .doc-card{position:relative;background:var(--white);border:1px solid var(--line);
   padding:clamp(30px,3vw,44px) clamp(24px,2.6vw,36px);transition:transform .55s var(--ease),box-shadow .55s var(--ease),border-color .55s var(--ease)}
 .doc-card::before,.doc-card::after{content:"";position:absolute;width:14px;height:14px;border:1px solid var(--gold);opacity:.55}
